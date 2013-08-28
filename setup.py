@@ -12,7 +12,7 @@ def make_local_settings():
     SECRET_KEY = ''.join([SystemRandom().choice(CHOICES) for i in range(50)])
 
     call("cp {{ project_name }}/settings/local.py.example {{ project_name }}/settings/temp_local.py", shell=True)
-    call("echo 'SECRET_KEY = \'{}\'' >> myproject/settings/temp_local.py".format(SECRET_KEY), shell=True)
+    call("sed 's/_SECRET_KEY/{}/' myproject/settings/temp_local.py > bin/temp_local2.py".format(SECRET_KEY), shell=True)
 
 
 def update_virtualenv_hooks():
@@ -27,9 +27,10 @@ def setup_database():
     local_db_pwd = raw_input('Local Database Password: ')
 
     call("sed 's/DATABASE_NAME/{}/g;s/DATABASE_USER/{}/g' {{ project_name }}/settings/temp_dev.py > {{ project_name }}/settings/dev.py".format(local_db_name, local_db_user), shell=True)
-    call("sed 's/DATABASE_PASSWORD/{}/' {{ project_name }}/settings/temp_local.py > {{ project_name }}/settings/local.py".format(local_db_pwd), shell=True)
+    call("sed 's/DATABASE_PASSWORD/{}/' {{ project_name }}/settings/temp_local2.py > {{ project_name }}/settings/local.py".format(local_db_pwd), shell=True)
     call("rm {{ project_name }}/settings/temp_dev.py", shell=True)
     call("rm {{ project_name }}/settings/temp_local.py", shell=True)
+    call("rm {{ project_name }}/settings/temp_local2.py", shell=True)
     print "\n...Local DB variables setup\n"
 
     print "Let's setup the production MySQL Database:"

@@ -3,3 +3,5 @@
 from .dev import *
 
 DATABASES['default']['PASSWORD'] = 'DATABASE_PASSWORD'
+
+SECRET_KEY = '_SECRET_KEY'
