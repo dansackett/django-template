@@ -43,11 +43,6 @@ def setup_database():
     print "NOTE: You will need to update your local.py file on production with the correct password.\n"
 
 
-def syncdb():
-    call(". bin/postactivate", shell=True)
-    call("django-admin.py syncdb --migrate", shell=True)
-
-
 if __name__ == "__main__":
     print "\nInstalling Requirements"
     print "===========================\n"
@@ -67,9 +62,4 @@ if __name__ == "__main__":
     print "\nAdding Database Information"
     print "===========================\n"
     setup_database()
-    print "...done!"
-
-    print "\nSyncing Database"
-    print "===========================\n"
-    syncdb()
     print "...done!"
