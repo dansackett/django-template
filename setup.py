@@ -12,7 +12,7 @@ def make_local_settings():
     SECRET_KEY = ''.join([SystemRandom().choice(CHOICES) for i in range(50)])
 
     call("cp {{ project_name }}/settings/local.py.example {{ project_name }}/settings/temp_local.py", shell=True)
-    call("sed 's/_SECRET_KEY/{}/' myproject/settings/temp_local.py > bin/temp_local2.py".format(SECRET_KEY), shell=True)
+    call("sed 's/_SECRET_KEY/{}/' {{ project_name }}/settings/temp_local.py > {{ project_name }}/settings/temp_local2.py".format(SECRET_KEY), shell=True)
 
 
 def update_virtualenv_hooks():
