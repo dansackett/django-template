@@ -15,11 +15,7 @@ def make_local_settings():
 
 
 def update_virtualenv_hooks():
-    call("sed 's/PROJECT_NAME/{{ project_name }}' > bin/postactivate", shell=True)
-    call(["cdvirtualenv", "bin"])
-    call("echo . ~/projects/{{ project_name }}/bin/postactivate >> postactivate'", shell=True)
-    call("echo . ~/projects/{{ project_name }}/bin/postdeactivate >> postdeactivate'", shell=True)
-    call(["cd", "-"])
+    call("sed 's/PROJECT_NAME/{{ project_name }}/' > bin/postactivate", shell=True)
     call(". bin/postactivate", shell=True)
 
 

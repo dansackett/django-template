@@ -25,16 +25,11 @@ Follow my instructions for setting up virtualenv and virtualenvwrapper here: htt
 Do the following once setup::
 
     mkvirtualenv {{ project_name }}
-    pip install -r reqs/dev.txt
-    cp {{ project_name }}/settings/local.py.example {{ project_name }}/settings/local.py
-
-- Edit the {{ project_name }}/settings/dev.py and {{ project_name }}/settings/prod.py files to reflect the database.
-- Edit {{ project_name }}/settings/local.py and add the appropriate passwords.
-- Edit {{ project_name }}/settings/local.py.example and remove the secret_key text.
-
-Next::
-
-    django-admin.py syncdb --migrate
+    cdvirtualenv bin
+    echo ". ~/projects/{{ project_name }}/bin/postactivate" >> postactivate
+    echo ". ~/projects/{{ project_name }}/bin/postdeactivate" >> postdeactivate
+    cd -
+    setup.py
 
 
 You're good to go!
