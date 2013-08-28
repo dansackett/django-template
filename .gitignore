@@ -27,3 +27,6 @@ nosetests.xml
 
 # Translations
 *.mo
+
+# Local settings
+{{ project_name }}/settings/local.py

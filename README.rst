@@ -6,7 +6,7 @@ Django Template
 
 ``django_template`` is my personal template for starting a Django project. To use ``django_template`` run the following command::
 
-     django-admin.py startproject --template=https://github.com/dansackett/django_template/zipball/master --extension=py,rst,gitignore, project_name
+     django-admin.py startproject --template=https://github.com/dansackett/django_template/zipball/master --extension=py,rst,gitignore project_name
 
 .. note:: The text following this comment block will become the README.rst of the new project.
 
@@ -20,20 +20,22 @@ Django Template
 Quickstart
 ----------
 
-To bootstrap the project::
+Follow my instructions for setting up virtualenv and virtualenvwrapper here: https://github.com/dansackett/django_setup#virtualenv-and-virtualenv-wrapper
 
-    virtualenv {{ project_name }}
-    source {{ project_name }}/bin/activate
-    cd path/to/{{ project_name }}/repository
-    pip install -r requirements.pip
-    pip install -e .
-    cp {{ project_name }}/settings/local.py.example {{ project_name }}/settings/local.py
-    manage.py syncdb --migrate
+Do the following once setup::
 
-Documentation
--------------
+    mkvirtualenv {{ project_name }}
+    pip install -r reqs/dev.txt
+    cp {{ project_name }}/settings/local.py.example {{ project_name
+    }}/settings/local.py
 
-Developer documentation is available in Sphinx format in the docs directory.
+- Edit the {{ project_name }}/settings/dev.py and {{ project_name }}/settings/prod.py files to reflect the database.
+- Edit {{ project_name }}/settings/local.py and add the appropriate passwords.
+- Edit {{ project_name }}/settings/local.py.example and remove the secret_key text.
 
-Initial installation instructions (including how to build the documentation as
-HTML) can be found in docs/install.rst.
+Next::
+
+    django-admin.py syncdb --migrate
+
+
+You're good to go!
