@@ -2,4 +2,4 @@
 
 from .dev import *
 
-DATABASES['default']['PASSWORD'] = ''
+DATABASES['default']['PASSWORD'] = 'DATABASE_PASSWORD'
