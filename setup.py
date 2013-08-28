@@ -26,7 +26,7 @@ def setup_database():
     local_db_user = raw_input('Local Database User: ')
     local_db_pwd = raw_input('Local Database Password: ')
 
-    call("sed 's/DATABASE_NAME/{}/' 's/DATABASE_USER/{}/' {{ project_name }}/settings/temp_dev.py > {{ project_name }}/settings/dev.py".format(local_db_name, local_db_user), shell=True)
+    call("sed 's/DATABASE_NAME/{}/g;s/DATABASE_USER/{}/g' {{ project_name }}/settings/temp_dev.py > {{ project_name }}/settings/dev.py".format(local_db_name, local_db_user), shell=True)
     call("sed 's/DATABASE_PASSWORD/{}/' {{ project_name }}/settings/temp_local.py > {{ project_name }}/settings/local.py".format(local_db_pwd), shell=True)
     call("rm {{ project_name }}/settings/temp_dev.py", shell=True)
     call("rm {{ project_name }}/settings/temp_local.py", shell=True)
@@ -36,7 +36,7 @@ def setup_database():
     prod_db_name = raw_input('Production Database Name: ')
     prod_db_user = raw_input('Production Database User: ')
 
-    call("sed 's/DATABASE_NAME/{}/' 's/DATABASE_USER/{}/' {{ project_name }}/settings/temp_prod.py > {{ project_name }}/settings/prod.py".format(prod_db_name, prod_db_user), shell=True)
+    call("sed 's/DATABASE_NAME/{}/g;s/DATABASE_USER/{}/g' {{ project_name }}/settings/temp_prod.py > {{ project_name }}/settings/prod.py".format(prod_db_name, prod_db_user), shell=True)
     call("rm {{ project_name }}/settings/temp_prod.py", shell=True)
     print "\n...Production DB variables setup"
     print "NOTE: You will need to update your local.py file on production with the correct password.\n"
