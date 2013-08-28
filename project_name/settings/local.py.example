@@ -1,0 +1,7 @@
+### Local Settings
+
+from .dev import *
+
+SECRET_KEY = ''
+
+DATABASES['default']['PASSWORD'] = ''
