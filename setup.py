@@ -15,7 +15,7 @@ def make_local_settings():
 
 
 def update_virtualenv_hooks():
-    call("sed 's/PROJECT_NAME/{{ project_name }}/' <bin/postactivate >bin/postactivate", shell=True)
+    call("sed 's/PROJECT_NAME/{{ project_name }}/' bin/postactivate > bin/postactivate", shell=True)
     call(". bin/postactivate", shell=True)
 
 
@@ -25,19 +25,19 @@ def setup_database():
     local_db_user = raw_input('Local Database User: ')
     local_db_pwd = raw_input('Local Database Password: ')
 
-    call("sed 's/DATABASE_NAME/{}/' <{{ project_name }}/settings/dev.py >{{ project_name }}/settings/dev.py".format(local_db_name), shell=True)
-    call("sed 's/DATABASE_USER/{}/' <{{ project_name }}/settings/dev.py >{{ project_name }}/settings/dev.py".format(local_db_user), shell=True)
-    call("sed 's/DATABASE_USER/{}/' <{{ project_name }}/settings/local.py >{{ project_name }}/settings/local.py".format(local_db_pwd), shell=True)
-    print "Local DB variables setup"
+    call("sed 's/DATABASE_NAME/{}/' {{ project_name }}/settings/dev.py > {{ project_name }}/settings/dev.py".format(local_db_name), shell=True)
+    call("sed 's/DATABASE_USER/{}/' {{ project_name }}/settings/dev.py > {{ project_name }}/settings/dev.py".format(local_db_user), shell=True)
+    call("sed 's/DATABASE_USER/{}/' {{ project_name }}/settings/local.py > {{ project_name }}/settings/local.py".format(local_db_pwd), shell=True)
+    print "\nLocal DB variables setup\n"
 
     print "Let's setup the production MySQL Database:"
     prod_db_name = raw_input('Production Database Name: ')
     prod_db_user = raw_input('Production Database User: ')
 
-    call("sed 's/DATABASE_NAME/{}/' <{{ project_name }}/settings/prod.py >{{ project_name }}/settings/prod.py".format(prod_db_name), shell=True)
-    call("sed 's/DATABASE_USER/{}/' <{{ project_name }}/settings/prod.py >{{ project_name }}/settings/prod.py".format(prod_db_user), shell=True)
-    print "Production DB variables setup"
-    print "NOTE: You will need to update your local.py file on production with the correct password."
+    call("sed 's/DATABASE_NAME/{}/' {{ project_name }}/settings/prod.py > {{ project_name }}/settings/prod.py".format(prod_db_name), shell=True)
+    call("sed 's/DATABASE_USER/{}/' {{ project_name }}/settings/prod.py > {{ project_name }}/settings/prod.py".format(prod_db_user), shell=True)
+    print "\nProduction DB variables setup"
+    print "NOTE: You will need to update your local.py file on production with the correct password.\n"
 
 
 def syncdb():
@@ -45,42 +45,27 @@ def syncdb():
 
 
 if __name__ == "__main__":
-    print "\n==========================="
-    print "Installing Requirements"
+    print "\nInstalling Requirements"
     print "===========================\n"
     install_reqs()
-    print "\n==========================="
-    print "Requirements Installed"
-    print "===========================\n"
+    print "...done!"
 
-    print "\n==========================="
-    print "Updating Local Settings"
+    print "\nUpdating Local Settings"
     print "===========================\n"
     make_local_settings()
-    print "\n==========================="
-    print "Local Settings Installed"
-    print "===========================\n"
+    print "...done!"
 
-    print "\n==========================="
-    print "Updating Virtualenv Hooks"
+    print "\nUpdating Virtualenv Hook"
     print "===========================\n"
     update_virtualenv_hooks()
-    print "\n==========================="
-    print "Virtualenv Hooks Edited"
-    print "===========================\n"
+    print "...done!"
 
-    print "\n==========================="
-    print "Adding Database Information"
+    print "\nAdding Database Information"
     print "===========================\n"
     setup_database()
-    print "\n==========================="
-    print "Database Information Saved"
-    print "===========================\n"
+    print "...done!"
 
-    print "\n==========================="
-    print "Syncing Database"
+    print "\nSyncing Database"
     print "===========================\n"
     syncdb()
-    print "\n==========================="
-    print "Database Synced"
-    print "===========================\n"
+    print "...done!"
