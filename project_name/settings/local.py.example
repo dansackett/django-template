@@ -2,6 +2,4 @@
 
 from .dev import *
 
-SECRET_KEY = '{{ secret_key }}'
-
 DATABASES['default']['PASSWORD'] = ''
