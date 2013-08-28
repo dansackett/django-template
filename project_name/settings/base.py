@@ -32,9 +32,9 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-ROOT_URLCONF = 'project_name.urls'
+ROOT_URLCONF = '{{ project_name }}.urls'
 
-WSGI_APPLICATION = 'project_name.wsgi.application'
+WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
 
 SECRET_KEY = ''
 

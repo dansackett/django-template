@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns
 
-from project_name.urls import *
+from {{ project_name }}.urls import *
 
 
 # handle media urls through django

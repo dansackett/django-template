@@ -15,7 +15,7 @@ from .base import *
 DEBUG = True
 TEMPLATE_DEBUG = True
 
-ROOT_URLCONF = 'project_name.dev_urls'
+ROOT_URLCONF = '{{ project_name }}.dev_urls'
 
 # django debug toolbar
 DEBUG_TOOLBAR_CONFIG = {
