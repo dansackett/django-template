@@ -30,7 +30,7 @@ Do the following once setup::
     echo ". ~/projects/{{ project_name }}/bin/postdeactivate" >> postdeactivate
     cd -
     pip install Django==1.5
-    setup.py
+    python setup.py
     . bin/postactivate
     django-admin.py syncdb --migrate
 
