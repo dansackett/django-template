@@ -26,8 +26,7 @@ Do the following once setup::
 
     mkvirtualenv {{ project_name }}
     pip install -r reqs/dev.txt
-    cp {{ project_name }}/settings/local.py.example {{ project_name
-    }}/settings/local.py
+    cp {{ project_name }}/settings/local.py.example {{ project_name }}/settings/local.py
 
 - Edit the {{ project_name }}/settings/dev.py and {{ project_name }}/settings/prod.py files to reflect the database.
 - Edit {{ project_name }}/settings/local.py and add the appropriate passwords.
