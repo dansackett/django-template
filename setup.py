@@ -13,16 +13,16 @@ def update_virtualenv_hooks():
 
 
 def setup_database():
+    SECRET_KEY = '{{ secret_key }}'
     print "Let's setup the local MySQL Database:"
     local_db_name = raw_input('Local Database Name: ')
     local_db_user = raw_input('Local Database User: ')
     local_db_pwd = raw_input('Local Database Password: ')
 
     call("sed 's/DATABASE_NAME/{}/g;s/DATABASE_USER/{}/g' {{ project_name }}/settings/temp_dev.py > {{ project_name }}/settings/dev.py".format(local_db_name, local_db_user), shell=True)
-    call("sed 's/DATABASE_PASSWORD/{}/g;s/_SECRET_KEY/{{ secret_key }}/g' {{ project_name }}/settings/temp_local.py > {{ project_name }}/settings/local.py".format(local_db_pwd), shell=True)
+    call("sed 's/DATABASE_PASSWORD/{}/g;s/_SECRET_KEY/{}/g' {{ project_name }}/settings/temp_local.py > {{ project_name }}/settings/local.py".format(local_db_pwd, SECRET_KEY), shell=True)
     call("rm {{ project_name }}/settings/temp_dev.py", shell=True)
     call("rm {{ project_name }}/settings/temp_local.py", shell=True)
-    call("rm {{ project_name }}/settings/temp_local2.py", shell=True)
     print "\n...Local DB variables setup\n"
 
     print "Let's setup the production MySQL Database:"
