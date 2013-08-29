@@ -26,11 +26,11 @@ Do the following once setup::
 
     mkvirtualenv {{ project_name }}
     cdvirtualenv bin
-    echo ". ~/projects/{{ project_name }}/bin/postactivate" >> postactivate
-    echo ". ~/projects/{{ project_name }}/bin/postdeactivate" >> postdeactivate
+    echo ". ~/projects/{{ project_name }}/{{ project_name }}/bin/postactivate" >> postactivate
+    echo ". ~/projects/{{ project_name }}/{{ project_name }}/bin/postdeactivate" >> postdeactivate
     cd -
     pip install Django==1.5
-    setup.py
+    python setup.py
     . bin/postactivate
     django-admin.py syncdb --migrate
 
